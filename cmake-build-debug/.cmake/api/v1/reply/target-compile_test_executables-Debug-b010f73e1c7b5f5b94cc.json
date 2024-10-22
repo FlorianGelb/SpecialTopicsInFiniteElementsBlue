@@ -1,0 +1,65 @@
+{
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"deal_ii_add_test",
+			"DEAL_II_PICKUP_TESTS",
+			"add_dependencies"
+		],
+		"files" : 
+		[
+			"/usr/share/deal.ii/macros/macro_deal_ii_add_test.cmake",
+			"/usr/share/deal.ii/macros/macro_deal_ii_pickup_tests.cmake",
+			"tests/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 2,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 343,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 126,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 478,
+				"parent" : 2
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "tests.template.debug::@a44f0ac069e85531cdee"
+		}
+	],
+	"id" : "compile_test_executables::@a44f0ac069e85531cdee",
+	"name" : "compile_test_executables",
+	"paths" : 
+	{
+		"build" : "tests",
+		"source" : "tests"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

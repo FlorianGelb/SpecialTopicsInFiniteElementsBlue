@@ -1,0 +1,142 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Debug-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "laplacian",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "compile_test_executables::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-compile_test_executables-Debug-b010f73e1c7b5f5b94cc.json",
+					"name" : "compile_test_executables",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "indent::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-indent-Debug-cb0b748b57f84c4f12d3.json",
+					"name" : "indent",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian.g-Debug-1c4f1a73403091a0a7a0.json",
+					"name" : "laplacian.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_1d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_1d.g-Debug-c21d81112d95cf2a10de.json",
+					"name" : "laplacian_1d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_2d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_2d.g-Debug-d292f9f25ff9e773c129.json",
+					"name" : "laplacian_2d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_3d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_3d.g-Debug-9ce1717e48a0c909f30c.json",
+					"name" : "laplacian_3d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "tests.template.debug::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-tests.template.debug-Debug-f20764dea4bc5c566e16.json",
+					"name" : "tests.template.debug",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "tests.template.debug.test::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-tests.template.debug.test-Debug-88c62aff65a90db17098.json",
+					"name" : "tests.template.debug.test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug",
+		"source" : "/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
