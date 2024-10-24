@@ -8,7 +8,8 @@
 					"build" : ".",
 					"childIndexes" : 
 					[
-						1
+						1,
+						2
 					],
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
@@ -19,11 +20,11 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						1,
 						2,
 						3,
 						4,
-						5
+						5,
+						6
 					]
 				},
 				{
@@ -39,8 +40,23 @@
 					"targetIndexes" : 
 					[
 						0,
-						6,
-						7
+						7,
+						8
+					]
+				},
+				{
+					"build" : "gtests",
+					"jsonFile" : "directory-gtests-Debug-b1aaa560e839213cdd88.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "gtests",
+					"targetIndexes" : 
+					[
+						1
 					]
 				}
 			],
@@ -51,7 +67,8 @@
 					"directoryIndexes" : 
 					[
 						0,
-						1
+						1,
+						2
 					],
 					"name" : "laplacian",
 					"targetIndexes" : 
@@ -63,7 +80,8 @@
 						4,
 						5,
 						6,
-						7
+						7,
+						8
 					]
 				}
 			],
@@ -77,6 +95,13 @@
 					"projectIndex" : 0
 				},
 				{
+					"directoryIndex" : 2,
+					"id" : "gtests.g::@ed8f849d7d6434676105",
+					"jsonFile" : "target-gtests.g-Debug-cb251866d27f854b73a6.json",
+					"name" : "gtests.g",
+					"projectIndex" : 0
+				},
+				{
 					"directoryIndex" : 0,
 					"id" : "indent::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-indent-Debug-cb0b748b57f84c4f12d3.json",
@@ -86,7 +111,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "laplacian.g::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-laplacian.g-Debug-1c4f1a73403091a0a7a0.json",
+					"jsonFile" : "target-laplacian.g-Debug-9be5626feb747f47ce17.json",
 					"name" : "laplacian.g",
 					"projectIndex" : 0
 				},

@@ -5,7 +5,7 @@
 		<Option title="laplacian"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\share\;CMake Files\..\..\..\..\..\..\usr\share\cmake\;CMake Files\..\..\..\..\..\..\usr\share\cmake\deal.II\;CMake Files\..\..\..\..\..\..\usr\share\deal.ii\;CMake Files\..\..\..\..\..\..\usr\share\deal.ii\macros\;CMake Files\tests\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\share\;CMake Files\..\..\..\..\..\..\usr\share\cmake\;CMake Files\..\..\..\..\..\..\usr\share\cmake\deal.II\;CMake Files\..\..\..\..\..\..\usr\share\deal.ii\;CMake Files\..\..\..\..\..\..\usr\share\deal.ii\macros\;CMake Files\tests\;CMake Files\gtests\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug"/>
@@ -417,8 +417,86 @@
 					<DistClean command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="gtests.g">
+				<Option output="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/gtests.g" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DDEBUG"/>
+					<Add directory="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/openmpi/include"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi"/>
+					<Add directory="/usr/include/petsc"/>
+					<Add directory="/usr/include/trilinos"/>
+					<Add directory="/usr/include/hdf5/openmpi"/>
+					<Add directory="/usr/include/scotch"/>
+					<Add directory="/usr/include/suitesparse"/>
+					<Add directory="/usr/include/opencascade"/>
+					<Add directory="/usr/include/slepc"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 gtests.g"/>
+					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtests.g/fast">
+				<Option output="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/gtests.g" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DDEBUG"/>
+					<Add directory="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/openmpi/include"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi"/>
+					<Add directory="/usr/include/petsc"/>
+					<Add directory="/usr/include/trilinos"/>
+					<Add directory="/usr/include/hdf5/openmpi"/>
+					<Add directory="/usr/include/scotch"/>
+					<Add directory="/usr/include/suitesparse"/>
+					<Add directory="/usr/include/opencascade"/>
+					<Add directory="/usr/include/slepc"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 gtests.g/fast"/>
+					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j6 -f &quot;/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug/gtests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/gtest_main.cc">
+			<Option target="gtests.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/simple_check.cc">
+			<Option target="gtests.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/LaplaceSolver.h">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/laplacian.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/LaplaceSolver.cc">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/laplacian.cc">
@@ -476,6 +554,9 @@
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/tests/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\tests\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\gtests\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

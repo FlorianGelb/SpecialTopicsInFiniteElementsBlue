@@ -14,8 +14,6 @@
 // 
 // ---------------------------------------------------------------------
 
-#include "laplacian.h"
-
 #include <deal.II/base/quadrature_lib.h>
 
 #include <deal.II/dofs/dof_handler.h>
@@ -26,7 +24,9 @@
 
 #include <deal.II/grid/grid_generator.h>
 #include <deal.II/grid/grid_out.h>
-#include <deal.II/grid/grid_refinement.h>
+#include <deal.II/grid/tria.h>
+
+
 #include <deal.II/grid/tria.h>
 
 #include <deal.II/lac/affine_constraints.h>
@@ -40,8 +40,10 @@
 #include <deal.II/numerics/data_out.h>
 #include <deal.II/numerics/error_estimator.h>
 #include <deal.II/numerics/vector_tools.h>
-
+#include <deal.II/grid/grid_refinement.h>
 #include <fstream>
+
+#include "LaplaceSolver.h"
 
 using namespace dealii;
 
@@ -59,8 +61,9 @@ coefficient(const Point<dim> &p)
 
 
 template <int dim>
-Laplacian<dim>::Laplacian()
-  : fe(2)
+LaplaceSolver<dim>::LaplaceSolver(Triangulation<dim>& triangulation)
+  : triangulation(triangulation)
+  , fe(2)
   , dof_handler(triangulation)
 {}
 
@@ -68,7 +71,7 @@ Laplacian<dim>::Laplacian()
 
 template <int dim>
 void
-Laplacian<dim>::setup_system()
+LaplaceSolver<dim>::setup_system()
 {
   dof_handler.distribute_dofs(fe);
 
@@ -101,7 +104,7 @@ Laplacian<dim>::setup_system()
 
 template <int dim>
 void
-Laplacian<dim>::assemble_system()
+LaplaceSolver<dim>::assemble_system()
 {
   const QGauss<dim> quadrature_formula(fe.degree + 1);
 
@@ -136,12 +139,12 @@ Laplacian<dim>::assemble_system()
                   (current_coefficient *              // a(x_q)
                    fe_values.shape_grad(i, q_index) * // grad phi_i(x_q)
                    fe_values.shape_grad(j, q_index) * // grad phi_j(x_q)
-                   fe_values.JxW(q_index));           // dx
+                   fe_values.JxW(q_index));           // dx / Stiffness
 
                 cell_matrix(i, j) +=
                   (fe_values.shape_value(i, q_index) *
                    fe_values.shape_value(j, q_index) *
-                   fe_values.JxW(q_index));
+                   fe_values.JxW(q_index)); // Mass
                 }
 
               cell_rhs(i) += (1.0 *                               // f(x)
@@ -160,7 +163,7 @@ Laplacian<dim>::assemble_system()
 
 template <int dim>
 void
-Laplacian<dim>::solve()
+LaplaceSolver<dim>::solve()
 {
   SolverControl            solver_control(1000, 1e-12);
   SolverCG<Vector<double>> solver(solver_control);
@@ -177,7 +180,7 @@ Laplacian<dim>::solve()
 
 template <int dim>
 void
-Laplacian<dim>::refine_grid()
+LaplaceSolver<dim>::refine_grid()
 {
   Vector<float> estimated_error_per_cell(triangulation.n_active_cells());
 
@@ -199,7 +202,7 @@ Laplacian<dim>::refine_grid()
 
 template <int dim>
 void
-Laplacian<dim>::output_results(const unsigned int cycle) const
+LaplaceSolver<dim>::output_results(const unsigned int cycle) const
 {
   {
     GridOut               grid_out;
@@ -225,36 +228,20 @@ Laplacian<dim>::output_results(const unsigned int cycle) const
 
 template <int dim>
 void
-Laplacian<dim>::run()
+LaplaceSolver<dim>::run()
 {
-  for (unsigned int cycle = 0; cycle < 8; ++cycle)
-    {
-      std::cout << "Cycle " << cycle << ':' << std::endl;
+  setup_system();
 
-      if (cycle == 0)
-        {
-          GridGenerator::hyper_ball(triangulation);
-          triangulation.refine_global(1);
-        }
-      else
-        refine_grid();
-
-
-      std::cout << "   Number of active cells:       "
-                << triangulation.n_active_cells() << std::endl;
-
-      setup_system();
-
-      std::cout << "   Number of degrees of freedom: " << dof_handler.n_dofs()
+  std::cout << "   Number of degrees of freedom: " << dof_handler.n_dofs()
                 << std::endl;
 
-      assemble_system();
-      solve();
-      output_results(cycle);
-    }
+  assemble_system();
+  solve();
+  output_results(0);
+
 }
 
 
-template class Laplacian<1>;
-template class Laplacian<2>;
-template class Laplacian<3>;
+template class LaplaceSolver<1>;
+template class LaplaceSolver<2>;
+template class LaplaceSolver<3>;

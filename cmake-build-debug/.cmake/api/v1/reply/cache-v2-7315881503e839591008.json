@@ -686,6 +686,30 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_HAVE_LIBC_PTHREAD",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Test CMAKE_HAVE_LIBC_PTHREAD"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_HAVE_PTHREAD_H",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have include pthread.h"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
 			"name" : "CMAKE_HOME_DIRECTORY",
 			"properties" : 
 			[
@@ -863,7 +887,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "2"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1266,6 +1290,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_GTest",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding GTest"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/usr/local/lib/libgtest.so][/usr/local/include][/usr/local/lib/libgtest_main.so][v()]"
+		},
+		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Perl",
 			"properties" : 
 			[
@@ -1303,7 +1339,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GMOCK_LIBRARY-NOTFOUND"
+			"value" : "/usr/local/lib/libgmock.so"
 		},
 		{
 			"name" : "GMOCK_LIBRARY_DEBUG",
@@ -1335,7 +1371,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GMOCK_MAIN_LIBRARY-NOTFOUND"
+			"value" : "/usr/local/lib/libgmock_main.so"
 		},
 		{
 			"name" : "GMOCK_MAIN_LIBRARY_DEBUG",
@@ -1367,7 +1403,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "GTEST_INCLUDE_DIR-NOTFOUND"
+			"value" : "/usr/local/include"
 		},
 		{
 			"name" : "GTEST_LIBRARY",
@@ -1383,7 +1419,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GTEST_LIBRARY-NOTFOUND"
+			"value" : "/usr/local/lib/libgtest.so"
 		},
 		{
 			"name" : "GTEST_LIBRARY_DEBUG",
@@ -1415,7 +1451,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "GTEST_MAIN_LIBRARY-NOTFOUND"
+			"value" : "/usr/local/lib/libgtest_main.so"
 		},
 		{
 			"name" : "GTEST_MAIN_LIBRARY_DEBUG",

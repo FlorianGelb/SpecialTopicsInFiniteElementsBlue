@@ -230,6 +230,43 @@ tests.template.debug.test/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tests.template.debug.test.dir/build.make tests/CMakeFiles/tests.template.debug.test.dir/build
 .PHONY : tests.template.debug.test/fast
 
+#=============================================================================
+# Target rules for targets named gtests.g
+
+# Build rule for target.
+gtests.g: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtests.g
+.PHONY : gtests.g
+
+# fast build rule for target.
+gtests.g/fast:
+	$(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/build
+.PHONY : gtests.g/fast
+
+source/LaplaceSolver.o: source/LaplaceSolver.cc.o
+.PHONY : source/LaplaceSolver.o
+
+# target to build an object file
+source/LaplaceSolver.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.o
+.PHONY : source/LaplaceSolver.cc.o
+
+source/LaplaceSolver.i: source/LaplaceSolver.cc.i
+.PHONY : source/LaplaceSolver.i
+
+# target to preprocess a source file
+source/LaplaceSolver.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.i
+.PHONY : source/LaplaceSolver.cc.i
+
+source/LaplaceSolver.s: source/LaplaceSolver.cc.s
+.PHONY : source/LaplaceSolver.s
+
+# target to generate assembly for a file
+source/LaplaceSolver.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.s
+.PHONY : source/LaplaceSolver.cc.s
+
 source/laplacian.o: source/laplacian.cc.o
 .PHONY : source/laplacian.o
 
@@ -296,11 +333,15 @@ help:
 	@echo "... compile_test_executables"
 	@echo "... indent"
 	@echo "... tests.template.debug.test"
+	@echo "... gtests.g"
 	@echo "... laplacian.g"
 	@echo "... laplacian_1d.g"
 	@echo "... laplacian_2d.g"
 	@echo "... laplacian_3d.g"
 	@echo "... tests.template.debug"
+	@echo "... source/LaplaceSolver.o"
+	@echo "... source/LaplaceSolver.i"
+	@echo "... source/LaplaceSolver.s"
 	@echo "... source/laplacian.o"
 	@echo "... source/laplacian.i"
 	@echo "... source/laplacian.s"

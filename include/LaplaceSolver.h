@@ -33,10 +33,10 @@
 using namespace dealii;
 
 template <int dim>
-class Laplacian
+class LaplaceSolver
 {
 public:
-  Laplacian();
+  LaplaceSolver( Triangulation<dim>& triangulation);
 
   void
   run();
@@ -53,8 +53,8 @@ private:
   void
   output_results(const unsigned int cycle) const;
 
-  Triangulation<dim> triangulation;
 
+  Triangulation<dim>& triangulation;
   FE_Q<dim>       fe;
   DoFHandler<dim> dof_handler;
 

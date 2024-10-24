@@ -14,15 +14,23 @@
 // 
 // ---------------------------------------------------------------------
 
-#include "laplacian.h"
+//#include "laplacian.h"
+#include "LaplaceSolver.h"
+#include <deal.II/grid/grid_generator.h>
+#include <deal.II/grid/grid_out.h>
+#include <deal.II/grid/tria.h>
 
 int
 main()
 {
+  Triangulation<DEAL_DIMENSION> triangulation;
+  GridGenerator::hyper_cube(triangulation);
+  triangulation.refine_global(5);
+
   try
     {
-      Laplacian<DEAL_DIMENSION> laplace_problem;
-      laplace_problem.run();
+      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation);
+      laplace_solver.run();
     }
   catch (std::exception &exc)
     {
