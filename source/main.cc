@@ -24,16 +24,16 @@ int
 main()
 {
   Triangulation<DEAL_DIMENSION> triangulation;
-  GridGenerator::hyper_cube(triangulation);
-  triangulation.refine_global(5);
+  GridGenerator::hyper_ball(triangulation);
+  triangulation.refine_global(3);
 
   try
     {
-      ConstFunction<double, DEAL_DIMENSION> p;
+      SinFunction<double, DEAL_DIMENSION> p;
       ConstFunction<double, DEAL_DIMENSION> rhs;
-      rhs.setConstant(5.0);
-      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &p, &p);
-      laplace_solver.run("const");
+      rhs.setConstant(1.0);
+      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &rhs, &rhs);
+      laplace_solver.run("sin");
     }
   catch (std::exception &exc)
     {

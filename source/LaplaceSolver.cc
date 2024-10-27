@@ -111,11 +111,19 @@ void
 LaplaceSolver<dim>::assemble_system()
 {
   const QGauss<dim> quadrature_formula(fe.degree + 1);
+  const QGauss<dim - 1> face_quadrature_formula(fe.degree + 1);
 
   FEValues<dim> fe_values(fe,
                           quadrature_formula,
                           update_values | update_gradients |
                             update_quadrature_points | update_JxW_values);
+
+  FEFaceValues<dim> fe_face_values(fe,
+                                   face_quadrature_formula,
+                                   update_values | update_quadrature_points |
+                                     update_normal_vectors |
+                                     update_JxW_values);
+
 
   const unsigned int dofs_per_cell = fe.n_dofs_per_cell();
 
@@ -133,9 +141,6 @@ LaplaceSolver<dim>::assemble_system()
 
       for (const unsigned int q_index : fe_values.quadrature_point_indices())
         {
-          const double current_coefficient =
-            coefficient<dim>(fe_values.quadrature_point(q_index));
-
           Point<dim> quadraturePoint
             = fe_values.quadrature_point(q_index);
 
@@ -144,7 +149,7 @@ LaplaceSolver<dim>::assemble_system()
               for (const unsigned int j : fe_values.dof_indices())
                 {
                 cell_matrix(i, j) +=
-                  (current_coefficient *              // a(x_q)
+                  (parameter->evaluate(quadraturePoint) *             // a(x_q)
                    fe_values.shape_grad(i, q_index) * // grad phi_i(x_q)
                    fe_values.shape_grad(j, q_index) * // grad phi_j(x_q)
                    fe_values.JxW(q_index));           // dx / Stiffness
@@ -153,13 +158,18 @@ LaplaceSolver<dim>::assemble_system()
                   (fe_values.shape_value(i, q_index) *
                    fe_values.shape_value(j, q_index) *
                    fe_values.JxW(q_index)); // Mass
+
+
                 }
+
+
 
               cell_rhs(i) += (rhs->evaluate(quadraturePoint) *                               // f(x)
                               fe_values.shape_value(i, q_index) * // phi_i(x_q)
                               fe_values.JxW(q_index));            // dx
             }
         }
+
 
       cell->get_dof_indices(local_dof_indices);
       constraints.distribute_local_to_global(
