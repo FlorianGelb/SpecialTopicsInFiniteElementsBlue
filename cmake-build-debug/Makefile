@@ -243,6 +243,30 @@ gtests.g/fast:
 	$(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/build
 .PHONY : gtests.g/fast
 
+source/ConstFunction.o: source/ConstFunction.cc.o
+.PHONY : source/ConstFunction.o
+
+# target to build an object file
+source/ConstFunction.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/ConstFunction.cc.o
+.PHONY : source/ConstFunction.cc.o
+
+source/ConstFunction.i: source/ConstFunction.cc.i
+.PHONY : source/ConstFunction.i
+
+# target to preprocess a source file
+source/ConstFunction.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/ConstFunction.cc.i
+.PHONY : source/ConstFunction.cc.i
+
+source/ConstFunction.s: source/ConstFunction.cc.s
+.PHONY : source/ConstFunction.s
+
+# target to generate assembly for a file
+source/ConstFunction.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/ConstFunction.cc.s
+.PHONY : source/ConstFunction.cc.s
+
 source/LaplaceSolver.o: source/LaplaceSolver.cc.o
 .PHONY : source/LaplaceSolver.o
 
@@ -266,6 +290,30 @@ source/LaplaceSolver.s: source/LaplaceSolver.cc.s
 source/LaplaceSolver.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.s
 .PHONY : source/LaplaceSolver.cc.s
+
+source/SinFunction.o: source/SinFunction.cc.o
+.PHONY : source/SinFunction.o
+
+# target to build an object file
+source/SinFunction.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/SinFunction.cc.o
+.PHONY : source/SinFunction.cc.o
+
+source/SinFunction.i: source/SinFunction.cc.i
+.PHONY : source/SinFunction.i
+
+# target to preprocess a source file
+source/SinFunction.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/SinFunction.cc.i
+.PHONY : source/SinFunction.cc.i
+
+source/SinFunction.s: source/SinFunction.cc.s
+.PHONY : source/SinFunction.s
+
+# target to generate assembly for a file
+source/SinFunction.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/SinFunction.cc.s
+.PHONY : source/SinFunction.cc.s
 
 source/laplacian.o: source/laplacian.cc.o
 .PHONY : source/laplacian.o
@@ -339,9 +387,15 @@ help:
 	@echo "... laplacian_2d.g"
 	@echo "... laplacian_3d.g"
 	@echo "... tests.template.debug"
+	@echo "... source/ConstFunction.o"
+	@echo "... source/ConstFunction.i"
+	@echo "... source/ConstFunction.s"
 	@echo "... source/LaplaceSolver.o"
 	@echo "... source/LaplaceSolver.i"
 	@echo "... source/LaplaceSolver.s"
+	@echo "... source/SinFunction.o"
+	@echo "... source/SinFunction.i"
+	@echo "... source/SinFunction.s"
 	@echo "... source/laplacian.o"
 	@echo "... source/laplacian.i"
 	@echo "... source/laplacian.s"

@@ -14,11 +14,11 @@
 // 
 // ---------------------------------------------------------------------
 
-//#include "laplacian.h"
 #include "LaplaceSolver.h"
 #include <deal.II/grid/grid_generator.h>
-#include <deal.II/grid/grid_out.h>
 #include <deal.II/grid/tria.h>
+#include "SinFunction.h"
+#include "ConstFunction.h"
 
 int
 main()
@@ -29,8 +29,11 @@ main()
 
   try
     {
-      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation);
-      laplace_solver.run();
+      ConstFunction<double, DEAL_DIMENSION> p;
+      ConstFunction<double, DEAL_DIMENSION> rhs;
+      rhs.setConstant(5.0);
+      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &p, &p);
+      laplace_solver.run("const");
     }
   catch (std::exception &exc)
     {

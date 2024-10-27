@@ -61,10 +61,14 @@ coefficient(const Point<dim> &p)
 
 
 template <int dim>
-LaplaceSolver<dim>::LaplaceSolver(Triangulation<dim>& triangulation)
+LaplaceSolver<dim>::LaplaceSolver(Triangulation<dim>& triangulation,
+                                  BaseFunction<double, dim>* rhs,
+                                  BaseFunction<double, dim>* parameter)
   : triangulation(triangulation)
   , fe(2)
   , dof_handler(triangulation)
+  , rhs(rhs)
+  , parameter(parameter)
 {}
 
 
@@ -131,6 +135,10 @@ LaplaceSolver<dim>::assemble_system()
         {
           const double current_coefficient =
             coefficient<dim>(fe_values.quadrature_point(q_index));
+
+          Point<dim> quadraturePoint
+            = fe_values.quadrature_point(q_index);
+
           for (const unsigned int i : fe_values.dof_indices())
             {
               for (const unsigned int j : fe_values.dof_indices())
@@ -147,7 +155,7 @@ LaplaceSolver<dim>::assemble_system()
                    fe_values.JxW(q_index)); // Mass
                 }
 
-              cell_rhs(i) += (1.0 *                               // f(x)
+              cell_rhs(i) += (rhs->evaluate(quadraturePoint) *                               // f(x)
                               fe_values.shape_value(i, q_index) * // phi_i(x_q)
                               fe_values.JxW(q_index));            // dx
             }
@@ -202,11 +210,11 @@ LaplaceSolver<dim>::refine_grid()
 
 template <int dim>
 void
-LaplaceSolver<dim>::output_results(const unsigned int cycle) const
+LaplaceSolver<dim>::output_results(const std::string& fileName) const
 {
   {
     GridOut               grid_out;
-    std::ofstream         output("grid-" + std::to_string(cycle) + ".gnuplot");
+    std::ofstream         output("grid-" + fileName + ".gnuplot");
     GridOutFlags::Gnuplot gnuplot_flags(false, 5);
     grid_out.set_flags(gnuplot_flags);
     MappingQGeneric<dim> mapping(3);
@@ -219,7 +227,7 @@ LaplaceSolver<dim>::output_results(const unsigned int cycle) const
     data_out.add_data_vector(solution, "solution");
     data_out.build_patches();
 
-    std::ofstream output("solution-" + std::to_string(cycle) + ".vtu");
+    std::ofstream output("solution-" +fileName + ".vtu");
     data_out.write_vtu(output);
   }
 }
@@ -228,7 +236,7 @@ LaplaceSolver<dim>::output_results(const unsigned int cycle) const
 
 template <int dim>
 void
-LaplaceSolver<dim>::run()
+LaplaceSolver<dim>::run(const std::string& fileName)
 {
   setup_system();
 
@@ -237,7 +245,7 @@ LaplaceSolver<dim>::run()
 
   assemble_system();
   solve();
-  output_results(0);
+  output_results(fileName);
 
 }
 

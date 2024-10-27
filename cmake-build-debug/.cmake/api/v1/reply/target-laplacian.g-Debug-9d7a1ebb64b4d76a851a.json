@@ -279,8 +279,10 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				2,
-				3
+				5,
+				6,
+				7,
+				8
 			]
 		}
 	],
@@ -1157,15 +1159,20 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2,
+				3,
+				4
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				2,
-				3
+				5,
+				6,
+				7,
+				8
 			]
 		}
 	],
@@ -1173,7 +1180,22 @@
 	[
 		{
 			"backtrace" : 1,
+			"path" : "include/BaseFunction.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/ConstFunction.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"path" : "include/LaplaceSolver.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/SinFunction.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1184,7 +1206,19 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "source/ConstFunction.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "source/LaplaceSolver.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/SinFunction.cc",
 			"sourceGroupIndex" : 1
 		},
 		{

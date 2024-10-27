@@ -490,13 +490,28 @@
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/simple_check.cc">
 			<Option target="gtests.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/BaseFunction.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/ConstFunction.h">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/LaplaceSolver.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/SinFunction.h">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/laplacian.h">
 			<Option target="laplacian.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/ConstFunction.cc">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/LaplaceSolver.cc">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/SinFunction.cc">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/laplacian.cc">

@@ -29,6 +29,7 @@
 #include <deal.II/lac/vector.h>
 
 #include <fstream>
+#include "BaseFunction.h"
 
 using namespace dealii;
 
@@ -36,10 +37,12 @@ template <int dim>
 class LaplaceSolver
 {
 public:
-  LaplaceSolver( Triangulation<dim>& triangulation);
+  LaplaceSolver( Triangulation<dim>& triangulation,
+                BaseFunction<double, dim>* rhs,
+                BaseFunction<double, dim>* parameter);
 
   void
-  run();
+  run(const std::string& fileName);
 
 private:
   void
@@ -51,7 +54,7 @@ private:
   void
   refine_grid();
   void
-  output_results(const unsigned int cycle) const;
+  output_results(const std::string& fileName) const;
 
 
   Triangulation<dim>& triangulation;
@@ -66,6 +69,9 @@ private:
 
   Vector<double> solution;
   Vector<double> system_rhs;
+
+  BaseFunction<double, dim>* rhs;
+  BaseFunction<double, dim>* parameter;
 };
 
 #endif
