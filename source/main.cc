@@ -32,7 +32,7 @@ main()
       SinFunction<double, DEAL_DIMENSION> p;
       ConstFunction<double, DEAL_DIMENSION> rhs;
       rhs.setConstant(1.0);
-      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &rhs, &rhs);
+      LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &p, &rhs);
       laplace_solver.run("sin");
     }
   catch (std::exception &exc)

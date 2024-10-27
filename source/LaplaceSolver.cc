@@ -121,11 +121,12 @@ LaplaceSolver<dim>::assemble_system()
   FEFaceValues<dim> fe_face_values(fe,
                                    face_quadrature_formula,
                                    update_values | update_quadrature_points |
-                                     update_normal_vectors |
+                                     update_normal_vectors | update_gradients |
                                      update_JxW_values);
 
 
   const unsigned int dofs_per_cell = fe.n_dofs_per_cell();
+  const unsigned int n_face_q_points = face_quadrature_formula.size();
 
   FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);
   Vector<double>     cell_rhs(dofs_per_cell);
@@ -170,6 +171,30 @@ LaplaceSolver<dim>::assemble_system()
             }
         }
 
+      // Assemble the boundary term for cell_matrix(i, j)
+      for (unsigned int face = 0; face < GeometryInfo<dim>::faces_per_cell; ++face) {
+          if (cell->face(face)->at_boundary()) { // apply to all boundary faces or specific IDs
+              fe_face_values.reinit(cell, face);
+
+              for (unsigned int q_index = 0; q_index < n_face_q_points; ++q_index) {
+                  const Tensor<1, dim> normal_vector = fe_face_values.normal_vector(q_index);
+                  Point<dim> quadraturePoint
+                    = fe_face_values.quadrature_point(q_index);
+
+
+                  for (unsigned int i = 0; i < dofs_per_cell; ++i) {
+                      for (unsigned int j = 0; j < dofs_per_cell; ++j) {
+                          // Boundary term: (n grad u) * v
+                          const double boundary_term = fe_face_values.shape_grad(i, q_index) * normal_vector *
+                                                       fe_face_values.shape_value(j, q_index) *
+                                                       fe_face_values.JxW(q_index);
+                          cell_matrix(i, j) +=
+                            parameter->evaluate(quadraturePoint) * boundary_term;
+                        }
+                    }
+                }
+            }
+        }
 
       cell->get_dof_indices(local_dof_indices);
       constraints.distribute_local_to_global(
