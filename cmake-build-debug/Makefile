@@ -243,6 +243,30 @@ gtests.g/fast:
 	$(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/build
 .PHONY : gtests.g/fast
 
+source/Coefficient.o: source/Coefficient.cc.o
+.PHONY : source/Coefficient.o
+
+# target to build an object file
+source/Coefficient.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/Coefficient.cc.o
+.PHONY : source/Coefficient.cc.o
+
+source/Coefficient.i: source/Coefficient.cc.i
+.PHONY : source/Coefficient.i
+
+# target to preprocess a source file
+source/Coefficient.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/Coefficient.cc.i
+.PHONY : source/Coefficient.cc.i
+
+source/Coefficient.s: source/Coefficient.cc.s
+.PHONY : source/Coefficient.s
+
+# target to generate assembly for a file
+source/Coefficient.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/Coefficient.cc.s
+.PHONY : source/Coefficient.cc.s
+
 source/ConstFunction.o: source/ConstFunction.cc.o
 .PHONY : source/ConstFunction.o
 
@@ -291,6 +315,30 @@ source/LaplaceSolver.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.s
 .PHONY : source/LaplaceSolver.cc.s
 
+source/MatrixFreeLaplaceOperator.o: source/MatrixFreeLaplaceOperator.cc.o
+.PHONY : source/MatrixFreeLaplaceOperator.o
+
+# target to build an object file
+source/MatrixFreeLaplaceOperator.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/MatrixFreeLaplaceOperator.cc.o
+.PHONY : source/MatrixFreeLaplaceOperator.cc.o
+
+source/MatrixFreeLaplaceOperator.i: source/MatrixFreeLaplaceOperator.cc.i
+.PHONY : source/MatrixFreeLaplaceOperator.i
+
+# target to preprocess a source file
+source/MatrixFreeLaplaceOperator.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/MatrixFreeLaplaceOperator.cc.i
+.PHONY : source/MatrixFreeLaplaceOperator.cc.i
+
+source/MatrixFreeLaplaceOperator.s: source/MatrixFreeLaplaceOperator.cc.s
+.PHONY : source/MatrixFreeLaplaceOperator.s
+
+# target to generate assembly for a file
+source/MatrixFreeLaplaceOperator.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/MatrixFreeLaplaceOperator.cc.s
+.PHONY : source/MatrixFreeLaplaceOperator.cc.s
+
 source/SinFunction.o: source/SinFunction.cc.o
 .PHONY : source/SinFunction.o
 
@@ -314,6 +362,54 @@ source/SinFunction.s: source/SinFunction.cc.s
 source/SinFunction.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/SinFunction.cc.s
 .PHONY : source/SinFunction.cc.s
+
+source/TestCaseK.o: source/TestCaseK.cc.o
+.PHONY : source/TestCaseK.o
+
+# target to build an object file
+source/TestCaseK.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseK.cc.o
+.PHONY : source/TestCaseK.cc.o
+
+source/TestCaseK.i: source/TestCaseK.cc.i
+.PHONY : source/TestCaseK.i
+
+# target to preprocess a source file
+source/TestCaseK.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseK.cc.i
+.PHONY : source/TestCaseK.cc.i
+
+source/TestCaseK.s: source/TestCaseK.cc.s
+.PHONY : source/TestCaseK.s
+
+# target to generate assembly for a file
+source/TestCaseK.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseK.cc.s
+.PHONY : source/TestCaseK.cc.s
+
+source/TestCaseRHS.o: source/TestCaseRHS.cc.o
+.PHONY : source/TestCaseRHS.o
+
+# target to build an object file
+source/TestCaseRHS.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseRHS.cc.o
+.PHONY : source/TestCaseRHS.cc.o
+
+source/TestCaseRHS.i: source/TestCaseRHS.cc.i
+.PHONY : source/TestCaseRHS.i
+
+# target to preprocess a source file
+source/TestCaseRHS.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseRHS.cc.i
+.PHONY : source/TestCaseRHS.cc.i
+
+source/TestCaseRHS.s: source/TestCaseRHS.cc.s
+.PHONY : source/TestCaseRHS.s
+
+# target to generate assembly for a file
+source/TestCaseRHS.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/laplacian.g.dir/build.make CMakeFiles/laplacian.g.dir/source/TestCaseRHS.cc.s
+.PHONY : source/TestCaseRHS.cc.s
 
 source/laplacian.o: source/laplacian.cc.o
 .PHONY : source/laplacian.o
@@ -387,15 +483,27 @@ help:
 	@echo "... laplacian_2d.g"
 	@echo "... laplacian_3d.g"
 	@echo "... tests.template.debug"
+	@echo "... source/Coefficient.o"
+	@echo "... source/Coefficient.i"
+	@echo "... source/Coefficient.s"
 	@echo "... source/ConstFunction.o"
 	@echo "... source/ConstFunction.i"
 	@echo "... source/ConstFunction.s"
 	@echo "... source/LaplaceSolver.o"
 	@echo "... source/LaplaceSolver.i"
 	@echo "... source/LaplaceSolver.s"
+	@echo "... source/MatrixFreeLaplaceOperator.o"
+	@echo "... source/MatrixFreeLaplaceOperator.i"
+	@echo "... source/MatrixFreeLaplaceOperator.s"
 	@echo "... source/SinFunction.o"
 	@echo "... source/SinFunction.i"
 	@echo "... source/SinFunction.s"
+	@echo "... source/TestCaseK.o"
+	@echo "... source/TestCaseK.i"
+	@echo "... source/TestCaseK.s"
+	@echo "... source/TestCaseRHS.o"
+	@echo "... source/TestCaseRHS.i"
+	@echo "... source/TestCaseRHS.s"
 	@echo "... source/laplacian.o"
 	@echo "... source/laplacian.i"
 	@echo "... source/laplacian.s"

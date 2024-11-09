@@ -279,10 +279,14 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				5,
-				6,
-				7,
-				8
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16
 			]
 		}
 	],
@@ -1162,17 +1166,25 @@
 				1,
 				2,
 				3,
-				4
+				4,
+				5,
+				6,
+				7,
+				8
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				5,
-				6,
-				7,
-				8
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16
 			]
 		}
 	],
@@ -1181,6 +1193,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/BaseFunction.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Coefficient.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1195,13 +1212,34 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "include/MatrixFreeLaplaceOperator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"path" : "include/SinFunction.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/TestCaseK.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/TestCaseRHS.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "include/laplacian.h",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/Coefficient.cc",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -1218,7 +1256,25 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "source/MatrixFreeLaplaceOperator.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "source/SinFunction.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/TestCaseK.cc",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/TestCaseRHS.cc",
 			"sourceGroupIndex" : 1
 		},
 		{

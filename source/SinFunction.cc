@@ -8,7 +8,7 @@
 template<typename T, int dim>
 T SinFunction<T, dim>::evaluate(const dealii::Point<dim> &p)
 {
-  return sin(p[0] + p[1]);
+   return sin(p[0] + p[1]);
 }
 
 template class SinFunction<double, 2>;

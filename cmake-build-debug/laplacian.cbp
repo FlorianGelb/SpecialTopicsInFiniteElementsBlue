@@ -493,16 +493,31 @@
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/BaseFunction.h">
 			<Option target="laplacian.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/Coefficient.h">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/ConstFunction.h">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/LaplaceSolver.h">
 			<Option target="laplacian.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/MatrixFreeLaplaceOperator.h">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/SinFunction.h">
 			<Option target="laplacian.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/TestCaseK.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/TestCaseRHS.h">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/laplacian.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/Coefficient.cc">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/ConstFunction.cc">
@@ -511,7 +526,16 @@
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/LaplaceSolver.cc">
 			<Option target="laplacian.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/MatrixFreeLaplaceOperator.cc">
+			<Option target="laplacian.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/SinFunction.cc">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/TestCaseK.cc">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/TestCaseRHS.cc">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/source/laplacian.cc">
