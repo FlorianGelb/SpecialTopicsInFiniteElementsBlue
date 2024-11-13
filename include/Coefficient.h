@@ -27,7 +27,8 @@ template <int dim>
 template <typename number>
 number Coefficient<dim>::value(const Point<dim, number> &p, const unsigned int /*component*/) const
 {
-  return 1. / (0.05 + 2. * p.square());
+  return 1;
+  //return 1. / (0.05 + 2. * p.square());
 }
 
 // Override for `value` with `double`

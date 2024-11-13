@@ -51,6 +51,7 @@ main()
   Triangulation<DEAL_DIMENSION> triangulation(Triangulation<2>::limit_level_difference_at_vertices);
   GridGenerator::hyper_cube(triangulation);
   triangulation.refine_global(1);
+
   LaplaceOperator<DEAL_DIMENSION, 1, double> system_matrix;
   MGLevelObject<LaplaceOperator<DEAL_DIMENSION, 1, float>> mg_matrices;
   MappingQ1<DEAL_DIMENSION> mapping;
@@ -60,16 +61,21 @@ main()
   MGConstrainedDoFs mg_constrained_dofs;
   const dealii::FE_Q<DEAL_DIMENSION> fe = dealii::FE_Q<DEAL_DIMENSION>(1);
   DoFHandler<DEAL_DIMENSION> dof_handler = DoFHandler(triangulation);
+  Vector<double> solution2;
 
 
 
 
   try
     {
-      // TestCaseK <double, DEAL_DIMENSION> k;
-      // TestCaseRHS <double, DEAL_DIMENSION> rhs;
-      // LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &rhs, &k);
-      // laplace_solver.run("sin");
+       //TestCaseK <double, DEAL_DIMENSION> k;
+       //TestCaseRHS <double, DEAL_DIMENSION> rhs;
+       ConstFunction<double, DEAL_DIMENSION> k;
+       k.setConstant(1);
+       LaplaceSolver<DEAL_DIMENSION> laplace_solver(triangulation, &k, &k);
+       laplace_solver.run("sin");
+       SparseMatrix<double> &matrix_matrix = laplace_solver.system_matrix;
+
 
 
 
@@ -107,9 +113,11 @@ main()
     system_matrix.initialize_dof_vector(solution);
     system_matrix.initialize_dof_vector(dst);
 
+    solution2.reinit(dof_handler.n_dofs());
     for (typename LinearAlgebra::distributed::Vector<double>::size_type i = 0; i < solution.locally_owned_size(); ++i)
       {
-        solution[i] = 1.0;
+        solution[i] = float(i);
+        solution2[i] = float(i);
       }
 
     // Compress the vector to ensure synchronization of ghost values across processors
@@ -152,19 +160,15 @@ main()
   std::cout << "Before vmult, solution norm squared = " << solution.norm_sqr() << std::endl;
   Coefficient<DEAL_DIMENSION> coefficient; // Create an object of Coefficient
   // Debug the coefficient values (print a few points)
-  for (const auto &cell : dof_handler.active_cell_iterators()) {
-      // Loop over the vertices of each cell
-      for (unsigned int v = 0; v < dealii::GeometryInfo<DEAL_DIMENSION>::vertices_per_cell; ++v) {
-          dealii::Point<DEAL_DIMENSION> p = cell->vertex(v);  // Get vertex coordinates for each vertex in the cell
-          std::cout << "Coefficient at point " << p << " = "
-                    << coefficient.value(p) << std::endl;
-        }
-    }
+
+  Vector<double> dst2;
+
+  dst2.reinit(dof_handler.n_dofs());
 
 
   // Perform the matrix-free operation
   system_matrix.vmult(dst, solution);
-
+  matrix_matrix.vmult(dst2, solution2);
 
   // Ensure synchronization of the solution vector (including ghost values)
   dst.compress(VectorOperation::insert);
@@ -174,7 +178,7 @@ main()
 
   // Print a few values of the solution
   for (unsigned int i = 0; i < dst.size(); ++i) {
-      std::cout << "solution[" << i << "] = " << dst[i] << std::endl;
+      std::cout << "solution[" << i << "] = " << dst[i] << "-" << dst2[i] << std::endl;
     }
 
 

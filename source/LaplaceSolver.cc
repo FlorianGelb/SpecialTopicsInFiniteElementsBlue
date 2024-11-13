@@ -65,7 +65,7 @@ LaplaceSolver<dim>::LaplaceSolver(Triangulation<dim>& triangulation,
                                   BaseFunction<double, dim>* rhs,
                                   BaseFunction<double, dim>* parameter)
   : triangulation(triangulation)
-  , fe(2)
+  , fe(1)
   , dof_handler(triangulation)
   , rhs(rhs)
   , parameter(parameter)
@@ -155,10 +155,10 @@ LaplaceSolver<dim>::assemble_system()
                    fe_values.shape_grad(j, q_index) * // grad phi_j(x_q)
                    fe_values.JxW(q_index));           // dx / Stiffness
 
-                cell_matrix(i, j) +=
-                  (fe_values.shape_value(i, q_index) *
-                   fe_values.shape_value(j, q_index) *
-                   fe_values.JxW(q_index)); // Mass
+                //cell_matrix(i, j) +=
+                //  (fe_values.shape_value(i, q_index) *
+                //   fe_values.shape_value(j, q_index) *
+                //   fe_values.JxW(q_index)); // Mass
 
 
                 }
@@ -279,7 +279,7 @@ LaplaceSolver<dim>::run(const std::string& fileName)
                 << std::endl;
 
   assemble_system();
-  solve();
+  //solve();
   output_results(fileName);
 
 }

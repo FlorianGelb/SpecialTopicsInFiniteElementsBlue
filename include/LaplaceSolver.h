@@ -44,6 +44,8 @@ public:
   void
   run(const std::string& fileName);
 
+  SparseMatrix<double> system_matrix;
+
 private:
   void
   setup_system();
@@ -64,7 +66,6 @@ private:
 
   AffineConstraints<double> constraints;
 
-  SparseMatrix<double> system_matrix;
   SparsityPattern      sparsity_pattern;
 
   Vector<double> solution;

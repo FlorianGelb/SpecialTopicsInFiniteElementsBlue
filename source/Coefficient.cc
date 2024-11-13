@@ -1,4 +1,4 @@
-#include "coefficient.h"
+#include "Coefficient.h"
 
 // Explicit instantiations for Coefficient<2> with different types for the `value` function
 
