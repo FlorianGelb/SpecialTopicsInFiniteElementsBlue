@@ -13,18 +13,32 @@
 // at the top level of the bare-dealii-app distribution. 
 // 
 // ---------------------------------------------------------------------
+#include "ElasticMF.h"
 
-#include "Solid.h"
+#include <deal.II/grid/grid_generator.h>
+#include <deal.II/grid/tria.h>
 
+using namespace dealii;
 
-int main()
+int
+main()
 {
-
   try
     {
-      const unsigned int dim = 3;
-      Solid<dim>         solid("parameters.prm");
-      solid.run();
+      // Define the dimension for the problem
+      constexpr int dim = 2; // or 3 for 3D problems
+
+      // Create a triangulation and generate a hypercube grid
+      Triangulation<dim> triangulation;
+      GridGenerator::hyper_cube(triangulation);
+      triangulation.refine_global(3); // Globally refine the grid 3 times
+
+      // Create the ElasticMatrixFree object
+      constexpr int degree = 1; // Polynomial degree for FE_Q elements
+      ElasticMatrixFree<dim, degree, 2> elastic_problem(triangulation);
+
+      // Initialize the system
+      elastic_problem.initialize();
     }
   catch (std::exception &exc)
     {
