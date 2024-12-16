@@ -23,22 +23,52 @@ using namespace dealii;
 int
 main()
 {
+
+
   try
     {
       // Define the dimension for the problem
       constexpr int dim = 2; // or 3 for 3D problems
 
       // Create a triangulation and generate a hypercube grid
-      Triangulation<dim> triangulation;
+      Triangulation<DEAL_DIMENSION> triangulation;
       GridGenerator::hyper_cube(triangulation);
       triangulation.refine_global(3); // Globally refine the grid 3 times
 
       // Create the ElasticMatrixFree object
       constexpr int degree = 1; // Polynomial degree for FE_Q elements
-      ElasticMatrixFree<dim, degree, 2> elastic_problem(triangulation);
+      ElasticMatrixFree<DEAL_DIMENSION, degree, DEAL_DIMENSION> elastic_problem(triangulation);
 
       // Initialize the system
       elastic_problem.initialize();
+      auto elastic_MF = elastic_problem.get_operator();
+
+      using VectorType = dealii::LinearAlgebra::distributed::Vector<double>;
+
+      // Loop over all dimensions
+      for (unsigned int i = 0; i < dim; ++i)
+        {
+          // Create a unit vector e
+          VectorType e; // Assuming e is initialized to the correct size elsewhere
+          e.reinit(DEAL_DIMENSION); // Initialize size based on the operator
+          e = 0; // Set all elements to zero
+          e[i] = 1; // Set the ith component to 1
+
+          // Create a result vector to hold the output
+          VectorType result;
+          result.reinit(DEAL_DIMENSION);
+
+          // Apply the operator
+          elastic_MF.vmult(result, e);
+
+          // Output the result
+          std::cout << "Result of operator applied to unit vector in direction " << i << ":\n";
+          result.print(std::cout);
+          std::cout << std::endl;
+        }
+
+
+
     }
   catch (std::exception &exc)
     {

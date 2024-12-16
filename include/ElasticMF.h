@@ -21,7 +21,8 @@
 #include <deal.II/matrix_free/matrix_free.h>
 
 #include <deal.II/numerics/data_out.h>
-
+#include <deal.II/lac/precondition.h>
+#include <deal.II/lac/solver_cg.h>
 #include <fstream>
 
 #include "ElasticOperator.h"
@@ -33,7 +34,7 @@ class ElasticMatrixFree
 {
 public:
   using Number     = double;
-  using VectorType = Vector<Number>;
+  using VectorType = dealii::LinearAlgebra::distributed::Vector<Number>;
 
   // OperatorType now includes n_components (dim for displacement in elasticity)
   using OperatorType = ElasticOperator::Operator<dim, degree, n_component>;
@@ -74,6 +75,7 @@ private:
 
   VectorType solution;
   VectorType system_rhs;
+
 };
 
 template <int dim, int degree, int n_component>
@@ -114,10 +116,13 @@ ElasticMatrixFree<dim, degree, n_component>::setup_system()
 }
 
 
+
+
 template <int dim, int degree, int n_component>
 void
 ElasticMatrixFree<dim, degree, n_component>::initialize()
 {
+
   setup_system();
 }
 

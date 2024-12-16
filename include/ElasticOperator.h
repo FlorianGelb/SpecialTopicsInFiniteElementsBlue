@@ -18,9 +18,10 @@ namespace ElasticOperator
   {
   public:
     using Number = double;
-    // using VectorType = dealii::LinearAlgebra::distributed::Vector<Number>;
+    using VectorType = dealii::LinearAlgebra::distributed::Vector<Number>;
 
-    using VectorType                     = dealii::Vector<Number>;
+
+    //using VectorType                     = dealii::Vector<Number>;
     const static unsigned int n_q_points = degree + 1;
 
     Operator();
@@ -32,8 +33,7 @@ namespace ElasticOperator
     compute_diagonal() override;
 
   protected:
-    virtual void
-    apply_add(VectorType &dst, const VectorType &src) const = 0;
+    void apply_add(VectorType &dst, const VectorType &src) const override;
 
   private:
     void
@@ -42,6 +42,13 @@ namespace ElasticOperator
                 const VectorType &                           src,
                 const std::pair<unsigned int, unsigned int> &cell_range) const;
   };
+  template <int dim, int degree, int n_components>
+  void
+  Operator<dim, degree, n_components>::apply_add(
+    Operator::VectorType       &dst,
+    const Operator::VectorType &src) const
+  {    // Ensure 'this->data' is valid and invoke 'local_apply' in a cell-wise loop.
+    this->data->cell_loop(&Operator::local_apply, this, dst, src);}
 
   template <int dim, int degree, int n_components>
   Operator<dim, degree, n_components>::Operator()
@@ -63,13 +70,6 @@ namespace ElasticOperator
   }
 
   template <int dim, int degree, int n_components>
-  void Operator<dim, degree, n_components>::apply_add(VectorType &dst, const VectorType &src) const
-  {
-    // Ensure 'this->data' is valid and invoke 'local_apply' in a cell-wise loop.
-    this->data->cell_loop(&Operator::local_apply, this, dst, src);
-  }
-
-  template <int dim, int degree, int n_components>
   void
   Operator<dim, degree, n_components>::local_apply(
     const dealii::MatrixFree<dim, Number> &      data,
@@ -79,8 +79,8 @@ namespace ElasticOperator
   {
     dealii::FEEvaluation<dim, degree, n_q_points, n_components, Number> fe_eval(data);
     FEValuesExtractors::Vector U(0);
-    float mu = 1;
-    float lambda = 1;
+    double mu = 1;
+    double lambda = 1;
 
     for (unsigned int cell = cell_range.first; cell < cell_range.second; ++cell)
       {
@@ -97,7 +97,7 @@ namespace ElasticOperator
 
             // Material tensor contribution
             auto stress = 2.0 * mu * sym_grad +
-                          lambda * div * dealii::unit_symmetric_tensor<dim>();
+                          dealii::make_vectorized_array(lambda) * div * dealii::unit_symmetric_tensor<dim>();
 
             fe_eval.submit_symmetric_gradient(stress, q);
           }
