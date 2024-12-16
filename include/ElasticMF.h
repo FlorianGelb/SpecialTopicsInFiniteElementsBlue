@@ -53,6 +53,8 @@ public:
   void
   initialize();
 
+  DoFHandler<dim> dof_handler;
+
 private:
   void
   setup_system();
@@ -66,7 +68,6 @@ private:
 
   // Change to a vector-valued finite element system
   FESystem<dim> fe;
-  DoFHandler<dim> dof_handler;
 
   AffineConstraints<Number> constraints;
 

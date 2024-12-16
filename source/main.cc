@@ -49,14 +49,18 @@ main()
       for (unsigned int i = 0; i < dim; ++i)
         {
           // Create a unit vector e
-          VectorType e; // Assuming e is initialized to the correct size elsewhere
-          e.reinit(DEAL_DIMENSION); // Initialize size based on the operator
-          e = 0; // Set all elements to zero
-          e[i] = 1; // Set the ith component to 1
+          VectorType e;
+          e.reinit(elastic_problem.dof_handler.n_dofs());  // Ensure the vector has the correct size for DoF
+          e = 0;  // Set all elements to zero
+          e(i) = 1;  // Set the i-th component to 1 (unit vector)
 
           // Create a result vector to hold the output
           VectorType result;
-          result.reinit(DEAL_DIMENSION);
+          result.reinit(e.size());  // Ensure result has the same size as e
+
+          // Output the initial unit vector (for debugging purposes)
+          std::cout << "Unit vector e in direction " << i << ":\n";
+          e.print(std::cout);
 
           // Apply the operator
           elastic_MF.vmult(result, e);
