@@ -14,10 +14,10 @@
 // 
 // ---------------------------------------------------------------------
 #include "ElasticMF.h"
-
+#include "Elasticity.h"
 #include <deal.II/grid/grid_generator.h>
 #include <deal.II/grid/tria.h>
-
+#include <math.h>
 using namespace dealii;
 
 int
@@ -38,10 +38,14 @@ main()
       // Create the ElasticMatrixFree object
       constexpr int degree = 1; // Polynomial degree for FE_Q elements
       ElasticMatrixFree<DEAL_DIMENSION, degree, DEAL_DIMENSION> elastic_problem(triangulation);
+      Elasticity<DEAL_DIMENSION> elastic_problem_2 = Elasticity(triangulation, degree);
 
       // Initialize the system
       elastic_problem.initialize();
+      elastic_problem_2.intinlize();
       auto elastic_MF = elastic_problem.get_operator();
+
+      auto elastic = &elastic_problem_2.system_matrix;
 
       using VectorType = dealii::LinearAlgebra::distributed::Vector<double>;
 
@@ -56,18 +60,25 @@ main()
 
           // Create a result vector to hold the output
           VectorType result;
+          VectorType result_2;
           result.reinit(e.size());  // Ensure result has the same size as e
+          result_2.reinit(e.size());
 
           // Output the initial unit vector (for debugging purposes)
-          std::cout << "Unit vector e in direction " << i << ":\n";
-          e.print(std::cout);
+
 
           // Apply the operator
           elastic_MF.vmult(result, e);
+          elastic->vmult(result_2, e);
+
+          VectorType difference;
+          difference.reinit(result.size()); // Ensure the vector is the correct size
+          difference = result_2;           // Copy result_2 into the difference
+          difference.add(-1.0, result);    // Compute result_2 - result
 
           // Output the result
           std::cout << "Result of operator applied to unit vector in direction " << i << ":\n";
-          result.print(std::cout);
+          std::cout << difference.l1_norm();
           std::cout << std::endl;
         }
 
