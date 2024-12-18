@@ -55,6 +55,8 @@ public:
 
   DoFHandler<dim> dof_handler;
 
+  AffineConstraints<Number> constraints;
+
 private:
   void
   setup_system();
@@ -68,8 +70,6 @@ private:
 
   // Change to a vector-valued finite element system
   FESystem<dim> fe;
-
-  AffineConstraints<Number> constraints;
 
   std::shared_ptr<MatrixFree<dim, Number>> matrix_free_storage;
   OperatorType                             system_matrix;

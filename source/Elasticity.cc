@@ -1,7 +1,7 @@
 //
 // Created by Florian on 02.12.2024.
 //
-#include "elasticity.h"
+#include "Elasticity.h"
 
 #include <deal.II/base/quadrature_lib.h>
 
@@ -61,13 +61,13 @@ Elasticity<dim>::setup_system()
   system_rhs.reinit(dof_handler.n_dofs());
 
   constraints.clear();
-  DoFTools::make_hanging_node_constraints(dof_handler, constraints);
+  //DoFTools::make_hanging_node_constraints(dof_handler, constraints);
 
 
-  VectorTools::interpolate_boundary_values(dof_handler,
-                                           0,
-                                           Functions::ZeroFunction<dim>(dim),
-                                           constraints);
+  //VectorTools::interpolate_boundary_values(dof_handler,
+  //                                         0,
+  //                                         Functions::ZeroFunction<dim>(dim),
+  //                                         constraints);
 
   constraints.close();
 
@@ -228,8 +228,8 @@ Elasticity<dim>::intinlize()
 
   assemble_system();
 
-  solve();
-  output_results(0);
+  //solve();
+  //output_results(0);
 }
 
 

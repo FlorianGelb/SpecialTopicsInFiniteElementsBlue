@@ -78,7 +78,6 @@ namespace ElasticOperator
     const std::pair<unsigned int, unsigned int> &cell_range) const
   {
     dealii::FEEvaluation<dim, degree, n_q_points, n_components, Number> fe_eval(data);
-    FEValuesExtractors::Vector U(0);
     double mu = 1;
     double lambda = 1;
 

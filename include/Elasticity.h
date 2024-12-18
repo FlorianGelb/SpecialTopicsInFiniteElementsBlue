@@ -52,6 +52,8 @@ public:
 
   SparseMatrix<double> system_matrix;
 
+  AffineConstraints<double> constraints;
+
 private:
   void
   setup_system();
@@ -69,8 +71,6 @@ private:
   FESystem<dim>   fe;
   DoFHandler<dim> dof_handler;
 
-
-  AffineConstraints<double> constraints;
 
   SparsityPattern      sparsity_pattern;
 

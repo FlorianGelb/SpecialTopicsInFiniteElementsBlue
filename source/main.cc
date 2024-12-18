@@ -28,12 +28,11 @@ main()
   try
     {
       // Define the dimension for the problem
-      constexpr int dim = 2; // or 3 for 3D problems
 
       // Create a triangulation and generate a hypercube grid
       Triangulation<DEAL_DIMENSION> triangulation;
       GridGenerator::hyper_cube(triangulation);
-      triangulation.refine_global(3); // Globally refine the grid 3 times
+      triangulation.refine_global(2); // Globally refine the grid 3 times
 
       // Create the ElasticMatrixFree object
       constexpr int degree = 1; // Polynomial degree for FE_Q elements
@@ -50,8 +49,12 @@ main()
       using VectorType = dealii::LinearAlgebra::distributed::Vector<double>;
 
       // Loop over all dimensions
-      for (unsigned int i = 0; i < dim; ++i)
+      for (unsigned int i = 0; i < elastic_problem.dof_handler.n_dofs(); ++i)
         {
+          //if(elastic_problem_2.constraints.is_constrained(i)
+          //      || elastic_problem.constraints.is_constrained(i)){
+           //   continue;
+           // }
           // Create a unit vector e
           VectorType e;
           e.reinit(elastic_problem.dof_handler.n_dofs());  // Ensure the vector has the correct size for DoF
