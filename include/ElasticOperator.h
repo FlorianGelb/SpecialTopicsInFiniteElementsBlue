@@ -9,12 +9,11 @@
 
 #include <deal.II/matrix_free/matrix_free.h>
 #include <deal.II/matrix_free/operators.h>
-namespace ElasticOperator
-{
+
   using namespace dealii;
 
   template <int dim, int degree, int n_components>
-  class Operator : public MatrixFreeOperators::Base<dim>
+  class ElasticOperator : public MatrixFreeOperators::Base<dim>
   {
   public:
     using Number = double;
@@ -24,7 +23,7 @@ namespace ElasticOperator
     //using VectorType                     = dealii::Vector<Number>;
     const static unsigned int n_q_points = degree + 1;
 
-    Operator();
+    ElasticOperator();
 
     void
     clear() override;
@@ -44,34 +43,34 @@ namespace ElasticOperator
   };
   template <int dim, int degree, int n_components>
   void
-  Operator<dim, degree, n_components>::apply_add(
-    Operator::VectorType       &dst,
-    const Operator::VectorType &src) const
+  ElasticOperator<dim, degree, n_components>::apply_add(
+    ElasticOperator::VectorType       &dst,
+    const ElasticOperator::VectorType &src) const
   {    // Ensure 'this->data' is valid and invoke 'local_apply' in a cell-wise loop.
-    this->data->cell_loop(&Operator::local_apply, this, dst, src);}
+    this->data->cell_loop(&ElasticOperator::local_apply, this, dst, src);}
 
   template <int dim, int degree, int n_components>
-  Operator<dim, degree, n_components>::Operator()
+  ElasticOperator<dim, degree, n_components>::ElasticOperator()
     : dealii::MatrixFreeOperators::Base<dim>()
   {}
 
   template <int dim, int degree, int n_components>
   void
-  Operator<dim, degree, n_components>::clear()
+  ElasticOperator<dim, degree, n_components>::clear()
   {
     dealii::MatrixFreeOperators::Base<dim>::clear();
   }
 
   template <int dim, int degree, int n_components>
   void
-  Operator<dim, degree, n_components>::compute_diagonal()
+  ElasticOperator<dim, degree, n_components>::compute_diagonal()
   {
     AssertThrow(false, ExcMessage("Not implemented"));
   }
 
   template <int dim, int degree, int n_components>
   void
-  Operator<dim, degree, n_components>::local_apply(
+  ElasticOperator<dim, degree, n_components>::local_apply(
     const dealii::MatrixFree<dim, Number> &      data,
     VectorType &                                 dst,
     const VectorType &                           src,
@@ -105,5 +104,5 @@ namespace ElasticOperator
         fe_eval.distribute_local_to_global(dst);
       }
   }
-} // namespace LaplaceOperator
+
 #endif // LAPLACIAN_ELASTICOPERATOR_H

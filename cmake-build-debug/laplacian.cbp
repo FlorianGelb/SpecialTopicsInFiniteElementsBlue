@@ -490,6 +490,9 @@
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/simple_check.cc">
 			<Option target="gtests.g"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/gtests/test_ElasticOperator.cc">
+			<Option target="gtests.g"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/BaseFunction.h">
 			<Option target="laplacian.g"/>
 		</Unit>
@@ -521,6 +524,9 @@
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/MatrixFreeLaplaceOperator.h">
+			<Option target="laplacian.g"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/MultigridMFElasticity.h">
 			<Option target="laplacian.g"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/include/SinFunction.h">

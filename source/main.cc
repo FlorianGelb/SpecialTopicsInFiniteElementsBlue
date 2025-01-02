@@ -18,6 +18,7 @@
 #include <deal.II/grid/grid_generator.h>
 #include <deal.II/grid/tria.h>
 #include <math.h>
+#include "MultigridMFElasticity.h"
 using namespace dealii;
 
 int
@@ -27,67 +28,13 @@ main()
 
   try
     {
-      // Define the dimension for the problem
-
-      // Create a triangulation and generate a hypercube grid
-      Triangulation<DEAL_DIMENSION> triangulation;
-      GridGenerator::hyper_cube(triangulation);
-      triangulation.refine_global(2); // Globally refine the grid 3 times
-
-      // Create the ElasticMatrixFree object
-      constexpr int degree = 1; // Polynomial degree for FE_Q elements
-      ElasticMatrixFree<DEAL_DIMENSION, degree, DEAL_DIMENSION> elastic_problem(triangulation);
-      Elasticity<DEAL_DIMENSION> elastic_problem_2 = Elasticity(triangulation, degree);
-
-      // Initialize the system
-      elastic_problem.initialize();
-      elastic_problem_2.intinlize();
-      auto elastic_MF = elastic_problem.get_operator();
-
-      auto elastic = &elastic_problem_2.system_matrix;
-
-      using VectorType = dealii::LinearAlgebra::distributed::Vector<double>;
-
-      // Loop over all dimensions
-      for (unsigned int i = 0; i < elastic_problem.dof_handler.n_dofs(); ++i)
-        {
-          //if(elastic_problem_2.constraints.is_constrained(i)
-          //      || elastic_problem.constraints.is_constrained(i)){
-           //   continue;
-           // }
-          // Create a unit vector e
-          VectorType e;
-          e.reinit(elastic_problem.dof_handler.n_dofs());  // Ensure the vector has the correct size for DoF
-          e = 0;  // Set all elements to zero
-          e(i) = 1;  // Set the i-th component to 1 (unit vector)
-
-          // Create a result vector to hold the output
-          VectorType result;
-          VectorType result_2;
-          result.reinit(e.size());  // Ensure result has the same size as e
-          result_2.reinit(e.size());
-
-          // Output the initial unit vector (for debugging purposes)
-
-
-          // Apply the operator
-          elastic_MF.vmult(result, e);
-          elastic->vmult(result_2, e);
-
-          VectorType difference;
-          difference.reinit(result.size()); // Ensure the vector is the correct size
-          difference = result_2;           // Copy result_2 into the difference
-          difference.add(-1.0, result);    // Compute result_2 - result
-
-          // Output the result
-          std::cout << "Result of operator applied to unit vector in direction " << i << ":\n";
-          std::cout << difference.l1_norm();
-          std::cout << std::endl;
-        }
-
-
-
+      MultigridMFElasticity<DEAL_DIMENSION, 1, DEAL_DIMENSION> MFE;
+      MFE.run();
     }
+
+
+
+
   catch (std::exception &exc)
     {
       std::cerr << std::endl

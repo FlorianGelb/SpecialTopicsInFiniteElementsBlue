@@ -188,6 +188,30 @@ simple_check.cc.s:
 	cd /mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug && $(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/simple_check.cc.s
 .PHONY : simple_check.cc.s
 
+test_ElasticOperator.o: test_ElasticOperator.cc.o
+.PHONY : test_ElasticOperator.o
+
+# target to build an object file
+test_ElasticOperator.cc.o:
+	cd /mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug && $(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/test_ElasticOperator.cc.o
+.PHONY : test_ElasticOperator.cc.o
+
+test_ElasticOperator.i: test_ElasticOperator.cc.i
+.PHONY : test_ElasticOperator.i
+
+# target to preprocess a source file
+test_ElasticOperator.cc.i:
+	cd /mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug && $(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/test_ElasticOperator.cc.i
+.PHONY : test_ElasticOperator.cc.i
+
+test_ElasticOperator.s: test_ElasticOperator.cc.s
+.PHONY : test_ElasticOperator.s
+
+# target to generate assembly for a file
+test_ElasticOperator.cc.s:
+	cd /mnt/c/Users/Florian/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug && $(MAKE) $(MAKESILENT) -f gtests/CMakeFiles/gtests.g.dir/build.make gtests/CMakeFiles/gtests.g.dir/test_ElasticOperator.cc.s
+.PHONY : test_ElasticOperator.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -204,6 +228,9 @@ help:
 	@echo "... simple_check.o"
 	@echo "... simple_check.i"
 	@echo "... simple_check.s"
+	@echo "... test_ElasticOperator.o"
+	@echo "... test_ElasticOperator.i"
+	@echo "... test_ElasticOperator.s"
 .PHONY : help
 
 
