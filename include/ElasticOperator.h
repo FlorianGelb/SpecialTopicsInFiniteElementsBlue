@@ -9,11 +9,11 @@
 
 #include <deal.II/matrix_free/matrix_free.h>
 #include <deal.II/matrix_free/operators.h>
-
+#include "Coefficient.h"
   using namespace dealii;
 
-  template <int dim, int degree, int n_components>
-  class ElasticOperator : public MatrixFreeOperators::Base<dim>
+  template <int dim, int degree, int n_components, typename number>
+  class ElasticOperator : public MatrixFreeOperators::Base<dim, LinearAlgebra::distributed::Vector<number>>
   {
   public:
     using Number = double;
@@ -24,6 +24,9 @@
     const static unsigned int n_q_points = degree + 1;
 
     ElasticOperator();
+
+    void evaluate_coefficient(
+      const Coefficient<dim> &coefficient_function);
 
     void
     clear() override;
@@ -40,37 +43,61 @@
                 VectorType &                                 dst,
                 const VectorType &                           src,
                 const std::pair<unsigned int, unsigned int> &cell_range) const;
+
+
+
+    Table<2, VectorizedArray<double>> coefficient;
   };
-  template <int dim, int degree, int n_components>
+
+
+
+  template <int dim, int degree, int n_components, typename number>
   void
-  ElasticOperator<dim, degree, n_components>::apply_add(
+  ElasticOperator<dim, degree, n_components, number>::apply_add(
     ElasticOperator::VectorType       &dst,
     const ElasticOperator::VectorType &src) const
   {    // Ensure 'this->data' is valid and invoke 'local_apply' in a cell-wise loop.
     this->data->cell_loop(&ElasticOperator::local_apply, this, dst, src);}
 
-  template <int dim, int degree, int n_components>
-  ElasticOperator<dim, degree, n_components>::ElasticOperator()
+  template <int dim, int degree, int n_components, typename number>
+  void ElasticOperator<dim, degree, n_components, number>::evaluate_coefficient(
+    const Coefficient<dim> &coefficient_function)
+  {
+    const unsigned int n_cells = this->data->n_cell_batches();
+    FEEvaluation<dim, degree, degree + 1, 1> phi(*this->data);
+
+    coefficient.reinit(n_cells, phi.n_q_points);
+    for (unsigned int cell = 0; cell < n_cells; ++cell)
+      {
+        phi.reinit(cell);
+        for (const unsigned int q : phi.quadrature_point_indices())
+          coefficient(cell, q) =
+            coefficient_function.value(phi.quadrature_point(q));
+      }
+  }
+
+  template <int dim, int degree, int n_components, typename number>
+  ElasticOperator<dim, degree, n_components, number>::ElasticOperator()
     : dealii::MatrixFreeOperators::Base<dim>()
   {}
 
-  template <int dim, int degree, int n_components>
+  template <int dim, int degree, int n_components, typename number>
   void
-  ElasticOperator<dim, degree, n_components>::clear()
+  ElasticOperator<dim, degree, n_components, number>::clear()
   {
     dealii::MatrixFreeOperators::Base<dim>::clear();
   }
 
-  template <int dim, int degree, int n_components>
+  template <int dim, int degree, int n_components, typename number>
   void
-  ElasticOperator<dim, degree, n_components>::compute_diagonal()
+  ElasticOperator<dim, degree, n_components, number>::compute_diagonal()
   {
     AssertThrow(false, ExcMessage("Not implemented"));
   }
 
-  template <int dim, int degree, int n_components>
+  template <int dim, int degree, int n_components, typename number>
   void
-  ElasticOperator<dim, degree, n_components>::local_apply(
+  ElasticOperator<dim, degree, n_components, number>::local_apply(
     const dealii::MatrixFree<dim, Number> &      data,
     VectorType &                                 dst,
     const VectorType &                           src,

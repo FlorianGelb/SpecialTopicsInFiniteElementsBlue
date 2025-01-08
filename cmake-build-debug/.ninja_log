@@ -1,0 +1,27 @@
+# ninja log v6
+7105	11156	1734528001895830840	CMakeFiles/laplacian.g.dir/source/TestCaseK.cc.o	f95882db09d9d721
+11156	14979	1734528005943822565	CMakeFiles/laplacian.g.dir/source/TestCaseRHS.cc.o	865a15da6cf6ddf6
+3790	7104	1734527998579837626	CMakeFiles/laplacian.g.dir/source/SinFunction.cc.o	7e587de5496a5faa
+14	18581	1734539560572773230	CMakeFiles/laplacian.g.dir/source/Elasticity.cc.o	fa0b1092b2d121ef
+29	16162	1734539615344775033	CMakeFiles/laplacian_3d.g.dir/source/main.cc.o	835d0908b7811a4a
+24	3786	1734527994811845344	CMakeFiles/laplacian.g.dir/source/Coefficient.cc.o	80a946c90b46e268
+26	3630	1734527994815845335	CMakeFiles/laplacian.g.dir/source/ConstFunction.cc.o	4331187b30e207ac
+18581	25812	1734539579140773841	liblaplacian.g.so	f2de164fced88da5
+14980	45443	1734528009767814757	CMakeFiles/laplacian.g.dir/source/laplacian.cc.o	8063dc73b47f3c55
+19019	21034	1731514581824425463	laplacian_2d.g	199c9bde174fbc0c
+3630	34807	1734527998419837954	CMakeFiles/laplacian.g.dir/source/MatrixFreeLaplaceOperator.cc.o	4bb375c9b27f998
+16162	18202	1734539631476775564	laplacian_3d.g	6eddf207ad7ee435
+27	33511	1734527994815845335	CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.o	3c6ba160ee283793
+33514	57675	1734528028303777023	CMakeFiles/laplacian_2d.g.dir/source/main.cc.o	f12acebc0fd52119
+25	4224	1736348747610051356	CMakeFiles/laplacian.g.dir/source/ConstFunction.cc.o	4331187b30e207ac
+25	4400	1736348747610051356	CMakeFiles/laplacian.g.dir/source/Coefficient.cc.o	80a946c90b46e268
+28	38037	1736348747614054090	CMakeFiles/laplacian.g.dir/source/Elasticity.cc.o	fa0b1092b2d121ef
+4224	40520	1736348751812551654	CMakeFiles/laplacian.g.dir/source/LaplaceSolver.cc.o	3c6ba160ee283793
+4401	41131	1736348751988644614	CMakeFiles/laplacian.g.dir/source/MatrixFreeLaplaceOperator.cc.o	4bb375c9b27f998
+38040	43004	1736348785635669662	CMakeFiles/laplacian.g.dir/source/SinFunction.cc.o	7e587de5496a5faa
+40526	44385	1736348788111684120	CMakeFiles/laplacian.g.dir/source/TestCaseK.cc.o	f95882db09d9d721
+41136	44955	1736348788723336119	CMakeFiles/laplacian.g.dir/source/TestCaseRHS.cc.o	865a15da6cf6ddf6
+43006	70905	1736348790590307935	CMakeFiles/laplacian.g.dir/source/laplacian.cc.o	8063dc73b47f3c55
+51	6639	1736349055107087452	liblaplacian.g.so	f2de164fced88da5
+22	28068	1736350889218840575	CMakeFiles/laplacian_3d.g.dir/source/main.cc.o	835d0908b7811a4a
+28069	32040	1736350917265509012	laplacian_3d.g	6eddf207ad7ee435

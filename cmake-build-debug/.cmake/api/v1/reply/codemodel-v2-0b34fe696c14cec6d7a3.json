@@ -1,0 +1,167 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Debug-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						0,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "gtests",
+					"jsonFile" : "directory-gtests-Debug-b1aaa560e839213cdd88.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "gtests",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "laplacian",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "compile_test_executables::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-compile_test_executables-Debug-b010f73e1c7b5f5b94cc.json",
+					"name" : "compile_test_executables",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gtests.g::@ed8f849d7d6434676105",
+					"jsonFile" : "target-gtests.g-Debug-96cf2becc243cedf09c3.json",
+					"name" : "gtests.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "indent::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-indent-Debug-cb0b748b57f84c4f12d3.json",
+					"name" : "indent",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian.g-Debug-db0691a8b244de356a42.json",
+					"name" : "laplacian.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_1d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_1d.g-Debug-2dfe1d25862bb3795882.json",
+					"name" : "laplacian_1d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_2d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_2d.g-Debug-64ba9ccc853283d1b240.json",
+					"name" : "laplacian_2d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "laplacian_3d.g::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-laplacian_3d.g-Debug-c2919512457f36881bc5.json",
+					"name" : "laplacian_3d.g",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "tests.template.debug::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-tests.template.debug-Debug-124f08c2cdca012a88b0.json",
+					"name" : "tests.template.debug",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "tests.template.debug.test::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-tests.template.debug.test-Debug-88c62aff65a90db17098.json",
+					"name" : "tests.template.debug.test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/f/Documents/SpecialTopicsInFiniteElementsBlue/cmake-build-debug",
+		"source" : "/home/f/Documents/SpecialTopicsInFiniteElementsBlue"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

@@ -58,16 +58,16 @@ private:
 
   const FE_Q<dim> fe;
   DoFHandler<dim> dof_handler;
-
+  using Number  = double;
   MappingQ1<dim> mapping;
 
   AffineConstraints<double> constraints;
-  using SystemMatrixType = ElasticOperator <dim, degree, n_components>;
+  using SystemMatrixType = ElasticOperator <dim, degree, n_components, Number>;
 
   SystemMatrixType system_matrix;
 
   MGConstrainedDoFs mg_constrained_dofs;
-  using LevelMatrixType = ElasticOperator<dim, degree, n_components>;
+  using LevelMatrixType = ElasticOperator<dim, degree, n_components, Number>;
   MGLevelObject<LevelMatrixType> mg_matrices;
 
   LinearAlgebra::distributed::Vector<double> solution;
@@ -176,14 +176,14 @@ void MultigridMFElasticity<dim, degree, n_components>::setup_system()
         mg_constrained_dofs.get_boundary_indices(level));
       level_constraints.close();
 
-      typename MatrixFree<dim, float>::AdditionalData additional_data;
+      typename MatrixFree<dim, double>::AdditionalData additional_data;
       additional_data.tasks_parallel_scheme =
-        MatrixFree<dim, float>::AdditionalData::none;
+        MatrixFree<dim, double>::AdditionalData::none;
       additional_data.mapping_update_flags =
         (update_gradients | update_JxW_values | update_quadrature_points);
       additional_data.mg_level = level;
-      std::shared_ptr<MatrixFree<dim, float>> mg_mf_storage_level(
-        new MatrixFree<dim, float>());
+      std::shared_ptr<MatrixFree<dim, double>> mg_mf_storage_level(
+        new MatrixFree<dim, double>());
       mg_mf_storage_level->reinit(mapping,
                                   dof_handler,
                                   level_constraints,
@@ -235,7 +235,7 @@ template <int dim, int degree, int n_components>
 void MultigridMFElasticity<dim, degree, n_components>::solve()
 {
   Timer                            time;
-  MGTransferMatrixFree<dim, float> mg_transfer(mg_constrained_dofs);
+  MGTransferMatrixFree<dim, double> mg_transfer(mg_constrained_dofs);
   mg_transfer.build(dof_handler);
   setup_time += time.wall_time();
   time_details << "MG build transfer time     (CPU/wall) " << time.cpu_time()
@@ -244,9 +244,9 @@ void MultigridMFElasticity<dim, degree, n_components>::solve()
 
   using SmootherType =
     PreconditionChebyshev<LevelMatrixType,
-                          LinearAlgebra::distributed::Vector<float>>;
+                          LinearAlgebra::distributed::Vector<double>>;
   mg::SmootherRelaxation<SmootherType,
-                         LinearAlgebra::distributed::Vector<float>>
+                         LinearAlgebra::distributed::Vector<double>>
                                                        mg_smoother;
   MGLevelObject<typename SmootherType::AdditionalData> smoother_data;
   smoother_data.resize(0, triangulation.n_global_levels() - 1);
@@ -271,11 +271,11 @@ void MultigridMFElasticity<dim, degree, n_components>::solve()
     }
   mg_smoother.initialize(mg_matrices, smoother_data);
 
-  MGCoarseGridApplySmoother<LinearAlgebra::distributed::Vector<float>>
+  MGCoarseGridApplySmoother<LinearAlgebra::distributed::Vector<double>>
     mg_coarse;
   mg_coarse.initialize(mg_smoother);
 
-  mg::Matrix<LinearAlgebra::distributed::Vector<float>> mg_matrix(
+  mg::Matrix<LinearAlgebra::distributed::Vector<double>> mg_matrix(
     mg_matrices);
 
   MGLevelObject<MatrixFreeOperators::MGInterfaceOperator<LevelMatrixType>>
@@ -284,16 +284,16 @@ void MultigridMFElasticity<dim, degree, n_components>::solve()
   for (unsigned int level = 0; level < triangulation.n_global_levels();
        ++level)
     mg_interface_matrices[level].initialize(mg_matrices[level]);
-  mg::Matrix<LinearAlgebra::distributed::Vector<float>> mg_interface(
+  mg::Matrix<LinearAlgebra::distributed::Vector<double>> mg_interface(
     mg_interface_matrices);
 
-  Multigrid<LinearAlgebra::distributed::Vector<float>> mg(
+  Multigrid<LinearAlgebra::distributed::Vector<double>> mg(
     mg_matrix, mg_coarse, mg_transfer, mg_smoother, mg_smoother);
   mg.set_edge_matrices(mg_interface, mg_interface);
 
   PreconditionMG<dim,
-                 LinearAlgebra::distributed::Vector<float>,
-                 MGTransferMatrixFree<dim, float>>
+                 LinearAlgebra::distributed::Vector<double>,
+                 MGTransferMatrixFree<dim, double>>
     preconditioner(dof_handler, mg, mg_transfer);
 
 

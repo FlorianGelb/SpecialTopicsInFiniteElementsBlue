@@ -37,7 +37,7 @@ public:
   using VectorType = dealii::LinearAlgebra::distributed::Vector<Number>;
 
   // OperatorType now includes n_components (dim for displacement in elasticity)
-  using OperatorType = ElasticOperator<dim, degree, n_component>;
+  using OperatorType = ElasticOperator<dim, degree, n_component, Number>;
 
   ElasticMatrixFree(const Triangulation<dim> &tria);
 
